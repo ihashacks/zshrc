@@ -1,5 +1,5 @@
 # PATH
-PATH=/usr/lib/nagios/plugins:/apps/android/sdk/android-sdk-linux/tools:/apps/android/sdk/android-sdk-linux/platform-tools:/apps/source/phonegap/phonegap-phonegap-android/bin:$HOME/.local/bin:${PATH}
+PATH=/usr/lib/nagios/plugins:$HOME/.local/bin:${PATH}
 
 # Colorized man pages
 export LESS_TERMCAP_mb=$'\E[01;31m'

@@ -7,12 +7,11 @@ alias grep='grep --color=auto'
 alias history='history 1 -1'
 alias hgrep='history 1 -1 | grep $1'
 alias lcd='cd $OLDPWD'
-alias ls='ls --color=always'
+alias ls='ls --color=auto'
 alias lsi4='lsof -Pnl +M -i4'
 alias msmtp='msmtp -Sv'
 alias psg='ps -ef | grep $1'
 alias phup='pkill -HUP $1'
-alias udid='lsusb -s :`lsusb | grep iPhone | cut -d ' ' -f 4 | sed 's/://'` -v | grep iSerial | awk '{print $3}''
 
 # pagers
 alias less='less -R'
