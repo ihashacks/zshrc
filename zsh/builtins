@@ -1,0 +1,6 @@
+# auto ls after cd 20120106-13:50:41
+function chpwd() {
+	ztodo
+    emulate -LR zsh
+    ls
+}

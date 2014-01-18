@@ -1,0 +1,4 @@
+#cd
+# added 20131220-10:39:50
+# inspired by @climagic
+man $(ls -L --color=no /usr/bin | shuf -n 1) | sed -n "/^NAME/{n;p;q}"

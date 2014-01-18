@@ -1,0 +1,44 @@
+# string manip
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias grep='grep --color=auto'
+
+# command/directory
+alias history='history 1 -1'
+alias hgrep='history 1 -1 | grep $1'
+alias lcd='cd $OLDPWD'
+alias ls='ls --color=always'
+alias lsi4='lsof -Pnl +M -i4'
+alias msmtp='msmtp -Sv'
+alias psg='ps -ef | grep $1'
+alias phup='pkill -HUP $1'
+alias udid='lsusb -s :`lsusb | grep iPhone | cut -d ' ' -f 4 | sed 's/://'` -v | grep iSerial | awk '{print $3}''
+
+# pagers
+alias less='less -R'
+
+# apt / deb / dpkg
+alias agug='sudo apt-fast upgrade'
+alias agud='sudo apt-get update'
+alias depends='apt-cache show $* | grep ^Depends'
+alias agc='apt-get changelog'
+alias agi='sudo apt-fast install'
+alias agp='sudo apt-get purge'
+alias aar='sudo add-apt-repository'
+alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
+
+# pm
+alias pmsuspend='sudo pm-suspend'
+
+# global
+alias -g G="| grep"
+alias -g L="| less"
+
+# system stuff
+alias raminfo='sudo dmidecode -t 16'
+
+# net stuff
+alias speedtest='wget -S --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
+
+# smile
+alias smile="curl http://smiley.meatcub.es:1337"
