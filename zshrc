@@ -26,7 +26,7 @@ precmd_functions+=( zshvcsprompt )
 
 
 # ztodo 20120222-21:30:30
-autoload -Uz ztodo
+[ $ZPRF_ZTODO -gt 0 ] && autoload -Uz ztodo
 
 #
 # title settings
