@@ -17,3 +17,36 @@ fliptable() {
 	echo "";
 	echo "FUCK IT!（╯°□°）╯ ┻━┻";
 	}
+
+# Extract files from any archive
+# Usage: ex 
+
+function ex ()
+{
+if [ -f "$1" ] ; then
+case "$1" in
+*.tar) tar xvf $1 ;;
+*.tar.bz2 | *.tbz2 ) tar xjvf $1 ;;
+*.tar.gz | *.tgz ) tar xzvf $1 ;;
+*.bz2) bunzip2 $1 ;;
+*.rar) unrar x $1 ;;
+*.gz) gunzip $1 ;;
+*.zip) unzip $1 ;;
+*.Z) uncompress $1 ;;
+*.7z) 7z x $1 ;;
+*.xz) tar xJvf $1 ;;
+*.deb)
+DIR=${1%%_*.deb}
+ar xv $1
+mkdir ${DIR}
+tar -C ${DIR} -xzvf data.tar.gz
+;;
+*.rpm) rpm2cpio $1 | cpio -vid ;;
+*) echo ""${1}" cannot be extracted via extract()" ;;
+esac
+else
+echo ""${1}" is not a valid file"
+fi
+}
+# Copied from bodhi.zazen
+# Thanks to rezza at Arch Linux
