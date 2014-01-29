@@ -38,7 +38,7 @@ alias raminfo='sudo dmidecode -t 16'
 
 # net stuff
 alias speedtest='wget -S --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
-alias macrand="echo -n "52:54:"; dd if=/dev/urandom count=1 2>/dev/null | md5sum | sed 's/^\(..\)\(..\)\(..\)\(..\).*$/\1:\2:\3:\4/'"
+alias macrand="grep -v ^# /usr/share/nmap/nmap-mac-prefixes | awk ' { print $1 } ' | sed 's/^\(..\)\(..\)\(..\).*$/\1:\2:\3/' | shuf -n 1 | tr A-Z a-z | tr '\n' ':' ; dd if=/dev/urandom count=1 2>/dev/null | md5sum | sed 's/^\(..\)\(..\)\(..\).*$/\1:\2:\3/'"
 
 # smile
 alias smile="curl http://smiley.meatcub.es:1337"
