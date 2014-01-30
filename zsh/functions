@@ -1,26 +1,25 @@
-# find which partition a file resides
-findpart() { [ -e "$1" ] && df -P "$1" | awk '/^\// {print $1}' || echo "$1 not found"; }
-
-# clear MBR on a device
-#zerombr() { [ -e "$1" ] && dd if=/dev/zero of=$1 bs=512 count=1 || echo "error clearing MBR for $1"; }
-
-# mount iso
-isomount() { [ -e "$2" ] || mkdir $2 && [ -e "$1" ] && sudo mount -t iso9660 -o loop $1 $2 || echo "error mounting iso image $1"; }
-
-# expand a shortened URL
-# http://pthree.org/2011/10/18/use-wget1-to-expand-shortened-urls/
+# Description: expand a shortened URL
+# Usage: expandurl <url>
+# Credit: http://pthree.org/2011/10/18/use-wget1-to-expand-shortened-urls/
 expandurl() { wget -S $1 2>&1 | grep ^Location; }
 
-# flip a table
-# inspired by @climagic
+
+# Description: find which partition a file resides
+# Usage: findpart <filename>
+findpart() { [ -e "$1" ] && df -P "$1" | awk '/^\// {print $1}' || echo "$1 not found"; }
+
+
+# Description: flip a table
+# Usage: fliptable
+# Credit: inspired by @climagic
 fliptable() {
 	echo "";
 	echo "FUCK IT!（╯°□°）╯ ┻━┻";
 	}
 
-# Extract files from any archive
-# Usage: ex 
-
+# Description: extract files from any archive
+# Usage: ex <filename>
+# Credit: bodhi.zazen
 function ex ()
 {
 if [ -f "$1" ] ; then
@@ -48,5 +47,11 @@ else
 echo ""${1}" is not a valid file"
 fi
 }
-# Copied from bodhi.zazen
-# Thanks to rezza at Arch Linux
+
+# Description: mount iso image
+# Usage: isomount <image> <mountpoint>
+isomount() { [ -e "$2" ] || mkdir $2 && [ -e "$1" ] && sudo mount -t iso9660 -o loop $1 $2 || echo "error mounting iso image $1"; }
+
+# Description: clear MBR on a device
+# Usage: zerombr <device>
+#zerombr() { [ -e "$1" ] && dd if=/dev/zero of=$1 bs=512 count=1 || echo "error clearing MBR for $1"; }
