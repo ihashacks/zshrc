@@ -6,6 +6,18 @@ certinfo() {
 	openssl x509 -noout -issuer -subject -dates
 	}
 
+# Description: detects if a parameter is in $PATH and executable
+# Usage: detectex <executable>
+detectex() {
+	local EX=$1
+	if [[ -x `which $EX` ]] ; then
+		return 0;
+	else
+		echo "$EX not executable or not in PATH";
+		return 1;
+	fi
+	}
+
 # Description: expand a shortened URL
 # Usage: expandurl <url>
 # Credit: http://pthree.org/2011/10/18/use-wget1-to-expand-shortened-urls/
@@ -70,6 +82,7 @@ isomount() {
 # Usage: macgrep <MAC address>
 macgrep() {
 	local MAC=/usr/share/nmap/nmap-mac-prefixes
+	echo -n ""
 	grep -i `echo $1 | \
 		sed -e 's/[:-]//g' | \
 		cut -c 1-6` \
