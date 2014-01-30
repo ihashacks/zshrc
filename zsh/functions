@@ -66,6 +66,17 @@ isomount() {
 	echo "error mounting iso image $1";
 	}
 
+# Description: determines vendor of a IEEE standard MAC address
+# Usage: macgrep <MAC address>
+macgrep() {
+	local MAC=/usr/share/nmap/nmap-mac-prefixes
+	grep -i `echo $1 | \
+		sed -e 's/[:-]//g' | \
+		cut -c 1-6` \
+		$MAC || \
+	echo "MAC address not found or database not available"
+	}
+
 # Description: clear MBR on a device
 # Usage: zerombr <device>
 #zerombr() { [ -e "$1" ] && dd if=/dev/zero of=$1 bs=512 count=1 || echo "error clearing MBR for $1"; }
