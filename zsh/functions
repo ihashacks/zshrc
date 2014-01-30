@@ -49,8 +49,14 @@ fi
 }
 
 # Description: mount iso image
-# Usage: isomount <image> <mountpoint>
-isomount() { [ -e "$2" ] || mkdir $2 && [ -e "$1" ] && sudo mount -t iso9660 -o loop $1 $2 || echo "error mounting iso image $1"; }
+# Usage: isomount <image>
+isomount() {
+	isotmp=`mktemp -d --tmpdir` && \
+	[ -e "$1" ] && \
+	sudo mount -t iso9660 -o loop $1 $isotmp && \
+	df -H $isotmp || \
+	echo "error mounting iso image $1";
+	}
 
 # Description: clear MBR on a device
 # Usage: zerombr <device>
