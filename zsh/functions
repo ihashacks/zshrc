@@ -77,6 +77,20 @@ macgrep() {
 	echo "MAC address not found or database not available"
 	}
 
+# Description: generates a random IEEE standard MAC address
+# Usage: macrand
+macrand () {
+	local MAC=/usr/share/nmap/nmap-mac-prefixes
+	echo -n ""
+	grep -v ^# $MAC | \
+	awk '{ print $1 }' | \
+	sed 's/^\(..\)\(..\)\(..\).*$/\1:\2:\3/' | \
+	shuf -n 1 | tr A-Z a-z | tr '\n' ':' ;
+	dd if=/dev/urandom count=1 2>/dev/null | \
+	md5sum | \
+	sed 's/^\(..\)\(..\)\(..\).*$/\1:\2:\3/'
+	}
+
 # Description: clear MBR on a device
 # Usage: zerombr <device>
 #zerombr() { [ -e "$1" ] && dd if=/dev/zero of=$1 bs=512 count=1 || echo "error clearing MBR for $1"; }
