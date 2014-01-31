@@ -8,6 +8,7 @@ certinfo() {
 
 # Description: detects if a parameter is in $PATH and executable
 # Usage: detectex <executable>
+# Credit: https://stackoverflow.com/questions/15771773/how-to-define-a-die-shell-function
 detectex() {
 	local EX=$1
 	if [[ -x `which $EX` ]] ; then
@@ -80,7 +81,9 @@ isomount() {
 
 # Description: determines vendor of a IEEE standard MAC address
 # Usage: macgrep <MAC address>
-macgrep() {
+macgrep() (
+	set -e
+	detectex nmap
 	local MAC=/usr/share/nmap/nmap-mac-prefixes
 	echo -n ""
 	grep -i `echo $1 | \
@@ -88,11 +91,13 @@ macgrep() {
 		cut -c 1-6` \
 		$MAC || \
 	echo "MAC address not found or database not available"
-	}
+	)
 
 # Description: generates a random IEEE standard MAC address
 # Usage: macrand
-macrand () {
+macrand () (
+	set -e
+	detectex nmap
 	local MAC=/usr/share/nmap/nmap-mac-prefixes
 	echo -n ""
 	grep -v ^# $MAC | \
@@ -102,7 +107,7 @@ macrand () {
 	dd if=/dev/urandom count=1 2>/dev/null | \
 	md5sum | \
 	sed 's/^\(..\)\(..\)\(..\).*$/\1:\2:\3/'
-	}
+	)
 
 # Description: clear MBR on a device
 # Usage: zerombr <device>
