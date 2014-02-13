@@ -37,7 +37,8 @@ alias -g L="| less"
 alias raminfo='sudo dmidecode -t 16'
 
 # net stuff
-alias speedtest='wget -S --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
+alias speedtest='python /apps/speedtest-cli/git/speedtest-cli/speedtest_cli.py'
+alias ipcheck='curl ifconfig.ihashacks.com'
 
 # smile
 alias smile="curl http://smiley.meatcub.es:1337"
