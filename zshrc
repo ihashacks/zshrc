@@ -1,4 +1,30 @@
 #
+# default preferences
+#
+
+# task completion
+ZPRF_TASKS=0
+
+# commands that run at each login shell
+ZPRF_LOGIN_AUTORUN=0
+
+# environment variables
+ZPRF_ENV=0
+
+# functions
+ZPRF_FUNCTIONS=0
+
+# aliases
+ZPRF_ALIAS=0
+
+# libnotify notifications for long running commands
+ZPRF_LIBNOTIFY=0
+
+# ztodo
+ZPRF_ZTODO=0
+
+
+#
 # local preferences
 #
 [ -e $HOME/.zsh-local/prefs ] && . $HOME/.zsh-local/prefs
