@@ -1,11 +1,3 @@
-# Description: check SSL cert info
-# Usage:  certinfo <host>
-certinfo() {
-	echo "" | \
-	openssl s_client -host $1 -port 443  2>/dev/null | \
-	openssl x509 -noout -issuer -subject -dates
-	}
-
 # Description: detects if a parameter is in $PATH and executable
 # Usage: detectex <executable>
 # Credit: https://stackoverflow.com/questions/15771773/how-to-define-a-die-shell-function
@@ -19,16 +11,29 @@ detectex() {
 	fi
 	}
 
+# Description: check SSL cert info
+# Usage:  certinfo <host>
+certinfo() {
+	echo "" | \
+	openssl s_client -host $1 -port 443  2>/dev/null | \
+	openssl x509 -noout -issuer -subject -dates
+	}
+
 # Description: expand a shortened URL
 # Usage: expandurl <url>
 # Credit: http://pthree.org/2011/10/18/use-wget1-to-expand-shortened-urls/
-expandurl() { wget -S $1 2>&1 | grep ^Location; }
-
+expandurl() {
+	wget -S $1 2>&1 | \
+	grep ^Location;
+	}
 
 # Description: find which partition a file resides
 # Usage: findpart <filename>
-findpart() { [ -e "$1" ] && df -P "$1" | awk '/^\// {print $1}' || echo "$1 not found"; }
-
+findpart() {
+	[ -e "$1" ] && df -P "$1" | \
+	awk '/^\// {print $1}' || \
+	echo "$1 not found";
+	}
 
 # Description: flip a table
 # Usage: fliptable
@@ -41,33 +46,32 @@ fliptable() {
 # Description: extract files from any archive
 # Usage: ex <filename>
 # Credit: bodhi.zazen
-function ex ()
-{
-if [ -f "$1" ] ; then
-case "$1" in
-*.tar) tar xvf $1 ;;
-*.tar.bz2 | *.tbz2 ) tar xjvf $1 ;;
-*.tar.gz | *.tgz ) tar xzvf $1 ;;
-*.bz2) bunzip2 $1 ;;
-*.rar) unrar x $1 ;;
-*.gz) gunzip $1 ;;
-*.zip) unzip $1 ;;
-*.Z) uncompress $1 ;;
-*.7z) 7z x $1 ;;
-*.xz) tar xJvf $1 ;;
-*.deb)
-DIR=${1%%_*.deb}
-ar xv $1
-mkdir ${DIR}
-tar -C ${DIR} -xzvf data.tar.gz
-;;
-*.rpm) rpm2cpio $1 | cpio -vid ;;
-*) echo ""${1}" cannot be extracted via extract()" ;;
-esac
-else
-echo ""${1}" is not a valid file"
-fi
-}
+function ex () {
+	if [ -f "$1" ] ; then
+		case "$1" in
+			*.tar) tar xvf $1 ;;
+			*.tar.bz2 | *.tbz2 ) tar xjvf $1 ;;
+			*.tar.gz | *.tgz ) tar xzvf $1 ;;
+			*.bz2) bunzip2 $1 ;;
+			*.rar) unrar x $1 ;;
+			*.gz) gunzip $1 ;;
+			*.zip) unzip $1 ;;
+			*.Z) uncompress $1 ;;
+			*.7z) 7z x $1 ;;
+			*.xz) tar xJvf $1 ;;
+			*.deb)
+			DIR=${1%%_*.deb}
+			ar xv $1
+			mkdir ${DIR}
+			tar -C ${DIR} -xzvf data.tar.gz
+			;;
+			*.rpm) rpm2cpio $1 | cpio -vid ;;
+			*) echo ""${1}" cannot be extracted via extract()" ;;
+		esac
+	else
+		echo ""${1}" is not a valid file"
+	fi
+	}
 
 # Description: mount iso image
 # Usage: isomount <image>
