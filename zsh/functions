@@ -11,8 +11,17 @@ detectex() {
 	fi
 	}
 
+# Description: displays source of a web page
+# Usage: pagesource <URL of webpage>
+pagesource() {
+	detectex lynx
+	detectex vimpager
+	local URL=$1
+	lynx -source $URL | vimpager
+	}
+
 # Description: check SSL cert info
-# Usage:  certinfo <host>
+# Usage: certinfo <host>
 certinfo() {
 	echo "" | \
 	openssl s_client -host $1 -port 443  2>/dev/null | \
