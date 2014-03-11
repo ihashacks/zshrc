@@ -109,6 +109,18 @@ macrand () (
 	sed 's/^\(..\)\(..\)\(..\).*$/\1:\2:\3/'
 	)
 
+# Description: lists files in an LXC guest
+# Usage: lxc-guest-ls -n <container name> -d <directory>
+lxc-guest-ls () {
+	while getopts n:d: opt
+		do case $opt in
+			n) local CONTAINER="$OPTARG";;
+			d) local DIR="$OPTARG";;
+		esac
+	done
+	sudo ls /var/lib/lxc/$CONTAINER/rootfs/$DIR
+	}
+
 # Description: clear MBR on a device
 # Usage: zerombr <device>
 #zerombr() { [ -e "$1" ] && dd if=/dev/zero of=$1 bs=512 count=1 || echo "error clearing MBR for $1"; }
