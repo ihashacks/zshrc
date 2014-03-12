@@ -35,6 +35,7 @@ alias -g L="| less"
 
 # system stuff
 alias raminfo='sudo dmidecode -t 16'
+alias numcpu='grep ^processor /proc/cpuinfo | wc -l'
 
 # net stuff
 alias speedtest='python /apps/speedtest-cli/git/speedtest-cli/speedtest_cli.py'
