@@ -162,12 +162,12 @@ pingsweep () {
 		esac
 	done
 	[[ -z $SUBNET ]] && \
-		echo "no subnet specified. specify one using the -s parameter" ; \
+		echo "no subnet specified. specify one using the -s parameter" && \
 		ip -4 addr show | \
 			grep inet | \
 			awk ' { print $2,$7 } ' | \
 			grep -v ^127 | \
-			column -t ; \
+			column -t && \
 		return 1
 	fping -ga $SUBNET 2> /dev/null | \
 		sort -g -t \. --key=4
