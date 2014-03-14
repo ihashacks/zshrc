@@ -2,6 +2,7 @@
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
+alias -g G="| grep"
 
 # command/directory
 alias history='history 1 -1'
@@ -15,6 +16,8 @@ alias phup='pkill -HUP $1'
 
 # pagers
 alias less='less -R'
+alias -g L="| less"
+alias -g VP="| vimpager"
 
 # apt / deb / dpkg
 alias agug='sudo apt-get upgrade'
@@ -28,10 +31,6 @@ alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
 
 # pm
 alias pmsuspend='sudo pm-suspend'
-
-# global
-alias -g G="| grep"
-alias -g L="| less"
 
 # system stuff
 alias raminfo='sudo dmidecode -t 16'
