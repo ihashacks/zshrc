@@ -151,3 +151,24 @@ flash_update () {
     wget -O $OUTDIR/install_flash_player_"$FLASHVER"_plugin.msi \
         http://download.macromedia.com/get/flashplayer/current/licensing/win/install_flash_player_"$FLASHMAJOR"_plugin.msi
     }
+
+# Description: runs a ping sweep
+# Usage: pingsweep
+pingsweep () {
+	detectex fping
+	while getopts s: opt
+		do case $opt in
+			s) local SUBNET="$OPTARG";;
+		esac
+	done
+	[[ -z $SUBNET ]] && \
+		echo "no subnet specified. specify one using the -s parameter" ; \
+		ip -4 addr show | \
+			grep inet | \
+			awk ' { print $2,$7 } ' | \
+			grep -v ^127 | \
+			column -t ; \
+		return 1
+	fping -ga $SUBNET 2> /dev/null | \
+		sort -g -t \. --key=4
+	}
