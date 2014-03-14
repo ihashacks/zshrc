@@ -35,7 +35,7 @@ alias pmsuspend='sudo pm-suspend'
 # system stuff
 alias raminfo='sudo dmidecode -t 16'
 alias numcpu='grep ^processor /proc/cpuinfo | wc -l'
-alias osdate='sudo tune2fs -l $(df -h / |(read; awk '{print $1; exit}')) | grep -i created'
+alias osdate="sudo tune2fs -l $(df -h / |(read; awk '{print $1; exit}')) | grep -i created"
 
 # net stuff
 alias speedtest='python /apps/speedtest-cli/git/speedtest-cli/speedtest_cli.py'
