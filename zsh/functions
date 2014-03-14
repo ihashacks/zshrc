@@ -172,3 +172,16 @@ pingsweep () {
 	fping -ga $SUBNET 2> /dev/null | \
 		sort -g -t \. --key=4
 	}
+
+# Description: uses OpenDNS to see if you are dealing with MITM DNS
+# Usage: dnscheck
+dnscheck () {
+	detectex dig
+	detectex host
+	local NS=$(for i in `seq 1 4` ; do host -4 resolver"$i".opendns.com ; done | sort -R | head -1 | cut -d " " -f 4)
+	local RESPONSE=$(dig +short which.opendns.com txt @$NS)
+	case $RESPONSE in
+		"I am not an OpenDNS resolver.") echo "something fishy is going on";;
+		*) echo "nothing to see here";;
+	esac
+	}
