@@ -129,6 +129,29 @@ setopt NO_CASE_GLOB
 
 
 #
+# dirstack
+#
+DIRSTACKFILE="$HOME/.zsh-local/cache/`hostname`/dirs"
+if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
+  dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
+  [[ -d $dirstack[1] ]] && cd $dirstack[1]
+fi
+chpwd() {
+  print -l $PWD ${(u)dirstack} >! $DIRSTACKFILE
+}
+
+DIRSTACKSIZE=20
+
+setopt autopushd pushdsilent pushdtohome
+
+## Remove duplicate entries
+setopt pushdignoredups
+
+## This reverts the +/- operators.
+setopt pushdminus
+
+
+#
 # misc settings
 #
 # Say how long a command took, if it took more than 30 seconds
