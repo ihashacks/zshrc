@@ -17,6 +17,7 @@ pagesource() {
 	detectex lynx
 	detectex vimpager
 	local URL=$1
+	echo $URL | grep ^http || return 1
 	lynx -source $URL | vimpager
 	}
 
