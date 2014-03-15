@@ -1,3 +1,4 @@
+################################################################################
 #
 # default preferences
 #
@@ -24,12 +25,14 @@ ZPRF_LIBNOTIFY=0
 ZPRF_ZTODO=0
 
 
+################################################################################
 #
 # local preferences
 #
 [ -e $HOME/.zsh-local/prefs ] && . $HOME/.zsh-local/prefs
 
 
+################################################################################
 #
 # prompt settings
 #
@@ -51,9 +54,14 @@ zshvcsprompt() {
 precmd_functions+=( zshvcsprompt )
 
 
+################################################################################
+#
 # ztodo 20120222-21:30:30
+#
 [ $ZPRF_ZTODO -gt 0 ] && autoload -Uz ztodo
 
+
+################################################################################
 #
 # title settings
 #
@@ -70,6 +78,7 @@ function title() {
 }
 
 
+################################################################################
 #
 # zsh + notifyosd 20130119-22:31:30
 # original credit to:	http://mumak.net/undistract-me/
@@ -77,7 +86,12 @@ function title() {
 #
 [[ $ZPRF_LIBNOTIFY -gt 0 ]] && [ -e $HOME/.zsh/notifyosd.zsh ] && [ -x `which notify-send` ] && . $HOME/.zsh/notifyosd.zsh
 
+
+################################################################################
+#
+# right prompt
 # added smily face on 20130910-21:46:43
+#
 function precmd() {
 	local RETVAL=$?
     title "zsh" "%m:%55<...<%~"
@@ -93,7 +107,11 @@ function preexec() {
     title "$1" "%m:%35<...<%~"
 }
 
-# emacs keybindings
+
+################################################################################
+#
+# keybindings and input
+#
 bindkey -e
 
 # edit command in EDITOR
@@ -101,7 +119,8 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey "^x^e" edit-command-line
 
-#
+
+################################################################################
 #
 # history settings
 #
@@ -128,6 +147,7 @@ setopt ALL_EXPORT
 setopt NO_CASE_GLOB
 
 
+################################################################################
 #
 # dirstack
 #
@@ -151,6 +171,7 @@ setopt pushdignoredups
 setopt pushdminus
 
 
+################################################################################
 #
 # misc settings
 #
@@ -171,6 +192,7 @@ setopt noshortloops
 setopt NOCLOBBER
 
 
+################################################################################
 #
 # completion settings
 #
@@ -206,6 +228,10 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%mem,%cpu,cputime,cmd'
 # inspired by http://arjanvandergaag.nl/blog/customize-zsh-prompt-with-vcs-info.html
 zstyle ':vcs_info:*' check-for-changes true
 
+################################################################################
+#
+# misc sourced stuff
+#
 # command not found!!!
 [ -e /etc/zsh_command_not_found ] && . /etc/zsh_command_not_found
 
