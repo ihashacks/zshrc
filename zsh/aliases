@@ -22,7 +22,6 @@ alias -g VP="| vimpager"
 # apt / deb / dpkg
 alias agug='sudo apt-get upgrade'
 alias agud='sudo apt-get update'
-alias depends='apt-cache show $* | grep ^Depends'
 alias agc='apt-get changelog'
 alias agi='sudo apt-get install'
 alias agp='sudo apt-get purge'

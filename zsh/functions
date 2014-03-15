@@ -185,3 +185,14 @@ dnscheck () {
 		*) echo "nothing to see here";;
 	esac
 	}
+
+# Description: shows dependencies for packages
+# Usage: deps <package>
+deps () {
+	for p in $@ ; do
+		echo -n "$p: " ; apt-cache show $p | \
+			grep ^Depends | \
+			head -1
+	done
+	unset p
+	}
