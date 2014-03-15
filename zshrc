@@ -151,7 +151,7 @@ setopt NO_CASE_GLOB
 #
 # dirstack
 #
-DIRSTACKFILE="$HOME/.zsh-local/cache/`hostname`/dirs"
+DIRSTACKFILE="$HOME/.zsh-local/cache/$HOSTNAME/dirs"
 if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
   dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
   [[ -d $dirstack[1] ]] && cd $dirstack[1]
