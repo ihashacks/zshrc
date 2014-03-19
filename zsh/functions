@@ -197,3 +197,10 @@ deps () {
 	done
 	unset p
 	}
+
+# Description: shows a concise interface and MAC address listing
+# Usage: mymac <interface>
+mymac () {
+    local INT=$1
+    ifconfig $INT | grep HWaddr | awk ' { print $1, $5 } '
+    }
