@@ -42,3 +42,6 @@ alias ipcheck='curl ifconfig.ihashacks.com'
 
 # smile
 alias smile="curl http://smiley.meatcub.es:1337"
+
+# misc
+alias now="date +%Y%m%d-%H:%M:%S"
