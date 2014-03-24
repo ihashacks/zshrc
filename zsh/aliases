@@ -29,7 +29,7 @@ alias aar='sudo add-apt-repository'
 alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
 
 # pm
-alias pmsuspend='sudo pm-suspend'
+alias suspendandlock='sudo pm-suspend | i3lock -c 000000'
 
 # system stuff
 alias raminfo='sudo dmidecode -t 16'
