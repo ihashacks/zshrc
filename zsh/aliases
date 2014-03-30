@@ -42,3 +42,4 @@ alias smile="curl http://smiley.meatcub.es:1337"
 
 # misc
 alias now="date +%Y%m%d-%H:%M:%S"
+alias globalspin="curl -s http://artscene.textfiles.com/vt100/globe.vt | pv -L9600 -q"
