@@ -204,3 +204,11 @@ mymac () {
     local INT=$1
     ifconfig $INT | grep HWaddr | awk ' { print $1, $5 } '
     }
+
+# Description: downloads a file from sf.net
+# Usage: sfwget <url>
+sfwget () {
+	local URL=$1
+	local FILE=$(echo $URL | cut -d\/ -f 7 | cut -d\? -f 1)
+	wget -O $FILE $URL
+	}
