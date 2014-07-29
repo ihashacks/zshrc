@@ -36,6 +36,16 @@ ZPRF_ZTODO=0
 #
 [ -e  $HOME/.zsh-local/precmd_functions ] && . $HOME/.zsh-local/precmd_functions
 
+#
+# environment overrides
+#
+[ -e  $HOME/.zsh-local/environment ] && . $HOME/.zsh-local/environment
+
+#
+# completion
+#
+fpath=(~/.zsh-local/completion $fpath)
+
 
 ################################################################################
 #
