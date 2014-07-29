@@ -31,6 +31,11 @@ ZPRF_ZTODO=0
 #
 [ -e $HOME/.zsh-local/prefs ] && . $HOME/.zsh-local/prefs
 
+#
+# precmd_functions overrides
+#
+[ -e  $HOME/.zsh-local/precmd_functions ] && . $HOME/.zsh-local/precmd_functions
+
 
 ################################################################################
 #
