@@ -43,3 +43,6 @@ alias smile="curl http://smiley.meatcub.es:1337"
 # misc
 alias now="date +%Y%m%d-%H:%M:%S"
 alias globalspin="curl -s http://artscene.textfiles.com/vt100/globe.vt | pv -L9600 -q"
+
+# version control stuff
+alias mr_update_apps="mr -d /apps -c ~/.mr/config/mrconfig-apps -s update"
