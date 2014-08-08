@@ -216,7 +216,11 @@ sfwget () {
 # Description: displays multiplication table
 # Usage: timetables
 timetables () {
-	for i in {1..12}; do \
+	local x=$1
+	[[ -z $x ]] && \
+		echo "please specify table range" && \
+		return 0
+	for i in {1..$x}; do \
 		for j in $(seq 1 $i); do \
 			echo -ne $i×$j=$((i*j))\\t; \
 		done; \
