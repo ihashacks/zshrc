@@ -145,7 +145,7 @@ flash_update () {
 	local FLASHVER=$(lynx -source https://www.adobe.com/special/products/flashplayer/fp_distribution3.html | \
 		grep -m1 -A1 "TextH3 LayoutSmallRow" | \
 		grep -oE '[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}')
-    local OUTDIR="/apps/adobe/flash player/msi"
+    local OUTDIR="/apps/adobe/flash_player/msi"
     local FLASHMAJOR=$(echo $FLASHVER | cut -d . -f 1)
     wget -O $OUTDIR/install_flash_player_"$FLASHVER"_active_x.msi \
         http://download.macromedia.com/get/flashplayer/current/licensing/win/install_flash_player_"$FLASHMAJOR"_active_x.msi
