@@ -237,3 +237,13 @@ timetables () {
 	done | \
 	column -t
 	}
+
+# Description: cleans up yum and rpm databases
+# Usage yum_cleanup
+yum_cleanup () {
+	detectex yum
+	detectex rpm
+	sudo yum clean all
+	sudo rm -rf /var/lib/rpm/__db*
+	sudo rpm --rebuilddb
+	}
